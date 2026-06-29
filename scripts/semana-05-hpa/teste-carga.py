@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Teste de carga simples — só com a biblioteca padrão do Python.
+"""Semana 5 · Aula 9 — Teste de carga simples — só com a biblioteca padrão do Python.
 
 Dispara muitas requisições HTTP em paralelo contra um endpoint durante alguns
 segundos e, ao final, imprime um resumo (total, sucesso/erro, requisições por
@@ -19,12 +19,12 @@ Limitação conhecida:
 Exemplos:
     Carga leve por 30 s contra o /health::
 
-        python scripts/load-test-simple.py --url http://localhost:8000/health \\
+        python scripts/semana-05-hpa/teste-carga.py --url http://localhost:8000/health \\
             --concurrency 20 --duration 30
 
     Carga mais pesada contra um ELB do EKS::
 
-        python scripts/load-test-simple.py --url http://<elb-dns>/tasks \\
+        python scripts/semana-05-hpa/teste-carga.py --url http://<elb-dns>/tasks \\
             --concurrency 50 --duration 60
 """
 

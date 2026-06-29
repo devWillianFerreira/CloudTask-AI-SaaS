@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-# build-and-push-ecr.sh — build da imagem PROD + push para o Amazon ECR.
+# build-push-ecr.sh — Semana 4 · Aula 7 — build da imagem PROD + push para o Amazon ECR.
 # -----------------------------------------------------------------------------
 # CONTEXTO (Aula 7 — Semana 4):
 #   O EKS (cluster na nuvem) NÃO enxerga as imagens da sua máquina. Ele puxa
@@ -20,9 +20,9 @@
 #   * Permissão IAM para ECR (no Learner Lab a LabRole já cobre).
 #
 # COMO USAR:
-#   ./scripts/build-and-push-ecr.sh                 # usa os defaults abaixo
-#   REGION=us-east-1 REPO=cloudtask-api TAG=latest ./scripts/build-and-push-ecr.sh
-#   TAG="$(git rev-parse --short HEAD)" ./scripts/build-and-push-ecr.sh   # tag = SHA
+#   ./scripts/semana-04-ecr/build-push-ecr.sh                 # usa os defaults abaixo
+#   REGION=us-east-1 REPO=cloudtask-api TAG=latest ./scripts/semana-04-ecr/build-push-ecr.sh
+#   TAG="$(git rev-parse --short HEAD)" ./scripts/semana-04-ecr/build-push-ecr.sh   # tag = SHA
 #
 # CUSTO: ECR cobra centavos por GB-mês de armazenamento. Bem barato. O caro
 #   da semana é o EKS (Aula 8), não o ECR.

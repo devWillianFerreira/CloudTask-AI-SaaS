@@ -20,19 +20,20 @@
 # =============================================================================
 
 services:
+
   # ----- API FastAPI -------------------------------------------------------
   api:
     build:
       context: .
       dockerfile: Dockerfile
-      target: dev # imagem com debugpy, ruff, watchfiles
+      target: dev                         # imagem com debugpy, ruff, watchfiles
     image: cloudtask-api:dev
     container_name: cloudtask-api
     ports:
-      - "${APP_PORT:-8000}:8000" # API
-      - "5678:5678" # debugpy (attach do VS Code)
+      - "${APP_PORT:-8000}:8000"          # API
+      - "5678:5678"                       # debugpy (attach do VS Code)
     volumes:
-      - .:/app:cached # hot-reload: editar no host reflete aqui
+      - .:/app:cached                     # hot-reload: editar no host reflete aqui
       - api-pip-cache:/home/appuser/.cache/pip
     environment:
       APP_ENV: development

@@ -22,6 +22,21 @@ sudo mkdir -p /home/appuser/.aws /home/appuser/.kube
 sudo chown -R appuser:appuser /home/appuser/.aws /home/appuser/.kube || true
 chmod 700 /home/appuser/.aws /home/appuser/.kube || true
 
+# Cache do usuário GRAVÁVEL: o `jsii` (runtime do AWS CDK em Python) EXTRAI
+# módulos nativos para ~/.cache/aws/jsii e PRECISA escrever ali — senão o
+# `cdk synth` morre com "EACCES: permission denied, mkdir .../jsii/package-cache".
+# (E o cache do pip também mora aqui.) Em rebuilds essa pasta às vezes nasce
+# como root; devolvemos a posse ao appuser.
+sudo mkdir -p /home/appuser/.cache/aws/jsii /home/appuser/.cache/pip
+sudo chown -R appuser:appuser /home/appuser/.cache || true
+
+# Posse do projeto para o appuser. POR QUÊ: dependendo de como o workspace é
+# montado (bind mount do Windows, clone feito por root, etc.) os arquivos podem
+# aparecer como root -> o aluno não consegue editar/rodar/commitar. Devolvemos a
+# posse ao appuser. O '|| true' evita quebrar o build se o mount não permitir
+# (ex.: bind mount onde a posse é virtual).
+sudo chown -R appuser:appuser /app 2>/dev/null || true
+
 # Pasta do histórico do zsh, persistida num volume (ver devcontainer.json).
 # POR QUÊ: o histórico de comandos sobrevive a rebuilds do container.
 sudo mkdir -p /commandhistory
@@ -69,6 +84,13 @@ EKSCTL_URL="https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_
 echo "==> [post-create] Instalando AWS CDK (npm global)..."
 sudo npm install -g aws-cdk \
   || echo "AVISO: falha ao instalar aws-cdk (instale depois com: sudo npm install -g aws-cdk)"
+
+echo "==> [post-create] Instalando libs Python do CDK (aws-cdk-lib)..."
+# O `cdk synth` roda `python3 app.py`, que importa `aws_cdk`. O CLI (npm acima)
+# NÃO traz essa lib Python — ela vem do requirements do CDK. Sem isto, o deploy
+# falha com "No module named 'aws_cdk'".
+python3 -m pip install --user -q -r /app/infra/cdk/requirements.txt \
+  || echo "AVISO: falha ao instalar libs do CDK (instale: python3 -m pip install --user -r infra/cdk/requirements.txt)"
 
 echo "==> [post-create] Versões instaladas:"
 # '|| true' para não abortar caso alguma ferramenta ainda não esteja no PATH.

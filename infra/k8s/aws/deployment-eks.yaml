@@ -4,7 +4,7 @@
 # O QUE MUDA em relação ao api-deployment.yaml local (Kind):
 #   * image: vem do ECR (registry na nuvem), não mais `cloudtask-api:dev` local.
 #     TROQUE <ACCOUNT> pelo ID da sua conta AWS (12 dígitos). O script
-#     scripts/build-and-push-ecr.sh imprime a linha exata no final.
+#     scripts/semana-04-ecr/build-push-ecr.sh imprime a linha exata no final.
 #   * imagePullPolicy: Always — sempre puxar a tag do ECR (a `latest` pode ter
 #     mudado). Em produção, prefira tag com SHA do commit + IfNotPresent.
 #   * replicas: 2 — alta disponibilidade. Em cluster com nós em 2+ AZs, isso

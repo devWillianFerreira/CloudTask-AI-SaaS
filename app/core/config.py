@@ -46,9 +46,25 @@ class Settings(BaseSettings):
     app_port: int = Field(default=8000, ge=1, le=65535)
     log_level: str = Field(default="INFO")
 
-    # Chave usada para assinar tokens/sessões no futuro. Em produção, gere com
-    # `python -c "import secrets; print(secrets.token_urlsafe(32))"`.
+    # Chave usada para assinar os tokens JWT do login (Aula 12). Em produção,
+    # gere com `python -c "import secrets; print(secrets.token_urlsafe(32))"`.
     secret_key: str = Field(default="change-me-please")
+
+    # --- Autenticação (Aula 12) -------------------------------------------
+    # Conta administrativa única da demo. O login (`POST /auth/login`) confere
+    # estas credenciais e devolve um token JWT; as rotas de dados (/tasks,
+    # /uploads, /events) exigem esse token. DEMO: senha fixa `admin#123` em
+    # tudo (app, API, banco, servidores). Em produção: nunca senha fixa/no .env;
+    # use um provedor de identidade (Cognito/OAuth) e segredos rotativos.
+    admin_username: str = Field(default="admin")
+    admin_password: str = Field(default="admin#123")
+    # Validade do token em minutos.
+    jwt_expire_minutes: int = Field(default=480)
+
+    # Prefixo público quando a API roda ATRÁS de um proxy que adiciona um
+    # caminho (ex.: o Edge/Caddy serve a API em `/api`). O FastAPI usa isto para
+    # gerar URLs corretas (Swagger -> `/api/openapi.json`). Vazio = sem prefixo.
+    root_path: str = Field(default="")
 
     # --- Banco de dados ----------------------------------------------------
     # Mesmo formato local e no Amazon RDS — só muda o host/usuário/senha.
@@ -109,6 +125,15 @@ class Settings(BaseSettings):
         default_factory=lambda: ["*"],
     )
 
+    # Origens permitidas no CORS (Aula 12). O frontend roda em OUTRO servidor
+    # (origem diferente), então o navegador só deixa ele chamar a API se a API
+    # responder com os cabeçalhos CORS certos. Mesmo padrão CSV do trusted_hosts:
+    # CORS_ORIGINS=http://meu-front:80,http://localhost:5173  (default "*" = libera
+    # geral — ok em demo; em produção liste os domínios reais).
+    cors_origins: Annotated[list[str], NoDecode] = Field(
+        default_factory=lambda: ["*"],
+    )
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
@@ -116,10 +141,10 @@ class Settings(BaseSettings):
         extra="ignore",  # ignora variáveis extras do ambiente (ex.: PATH)
     )
 
-    @field_validator("trusted_hosts", mode="before")
+    @field_validator("trusted_hosts", "cors_origins", mode="before")
     @classmethod
     def _split_hosts(cls, value: object) -> object:
-        """Aceita TRUSTED_HOSTS como CSV no .env (ex.: "api.exemplo.com,localhost").
+        """Aceita TRUSTED_HOSTS / CORS_ORIGINS como CSV no .env.
 
         O .env só guarda texto; aqui transformamos "a,b,c" na lista ["a","b","c"].
         """
