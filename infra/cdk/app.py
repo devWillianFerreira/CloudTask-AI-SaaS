@@ -145,6 +145,7 @@ compute = ComputeStack(
     vpc=network.vpc,
     db=database.instance,
     db_secret_name=database.db_secret_name,
+    bucket=storage.bucket,
 )
 
 # Fecha a "montagem": percorre TODA a árvore (App -> stacks -> constructs) e

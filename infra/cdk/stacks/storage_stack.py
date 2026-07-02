@@ -60,6 +60,10 @@ class StorageStack(Stack):
             removal_policy=RemovalPolicy.DESTROY,                 # destroy apaga o bucket (didático)
         )
 
+        # Expõe o bucket para outras stacks (ex.: ComputeStack injeta o nome no
+        # user-data da EC2 via token -> vira Fn::ImportValue no deploy).
+        self.bucket = bucket
+
         # Saída exibida no fim do `cdk deploy` e consultável depois. Útil para
         # colar no `.env` da app (S3_BUCKET_NAME=...).
         CfnOutput(

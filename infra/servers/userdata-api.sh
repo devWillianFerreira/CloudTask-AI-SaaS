@@ -27,7 +27,14 @@ set -xe
 : "${REPO_URL:=https://github.com/N-CPUninter/Computa-o-em-Nuvem---Projeto-exemplo-CloudTask-AI-SaaS.git}"
 : "${BRANCH:=semana-06-cdk-final}"
 : "${DATABASE_URL:=}"
-: "${ROOT_PATH:=/}"  # atrás do proxy: "/api" (Swagger gera URLs com o prefixo)
+: "${ROOT_PATH:=}"   # atrás do proxy: "/api" (Swagger gera URLs com o prefixo)
+# Storage dos uploads: o lançador escolhe. Sem export = modo local (disco do
+# container, efêmero). O caminho CDK exporta STORAGE_MODE=s3 + S3_BUCKET_NAME
+# (nome do bucket resolvido em deploy time pelo CloudFormation).
+: "${STORAGE_MODE:=local}"        # local | s3
+: "${AWS_REGION:=us-east-1}"
+: "${S3_BUCKET_NAME:=}"
+: "${S3_PRESIGNED_URL_EXPIRES:=3600}"
 
 dnf update -y
 dnf install -y docker git
@@ -55,6 +62,10 @@ fi
 # Imagem da API (target prod do Dockerfile do repo).
 docker build -t cloudtask-api:prod --target prod .
 
+# ANTES o storage era fixo no modo local:  -e STORAGE_MODE=local
+# AGORA vem das variáveis (default `local`); o caminho CDK exporta STORAGE_MODE=s3
+# + S3_BUCKET_NAME e a API grava no S3. (Comentários não podem ir DENTRO do
+# `docker run ... \` — quebram a continuação de linha; por isso ficam aqui.)
 docker run -d --name api --network cloudtask --restart unless-stopped \
   -p 8000:8000 \
   -e APP_ENV=production \
@@ -63,7 +74,10 @@ docker run -d --name api --network cloudtask --restart unless-stopped \
   -e SECRET_KEY="$SECRET_KEY" \
   -e ADMIN_USERNAME=admin \
   -e ADMIN_PASSWORD="$ADMIN_PASSWORD" \
-  -e STORAGE_MODE=local \
+  -e STORAGE_MODE="$STORAGE_MODE" \
+  -e AWS_REGION="$AWS_REGION" \
+  -e S3_BUCKET_NAME="$S3_BUCKET_NAME" \
+  -e S3_PRESIGNED_URL_EXPIRES="$S3_PRESIGNED_URL_EXPIRES" \
   -e CORS_ORIGINS='*' \
   -e ROOT_PATH="$ROOT_PATH" \
   cloudtask-api:prod

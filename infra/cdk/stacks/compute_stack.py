@@ -164,6 +164,7 @@ class ComputeStack(Stack):
         secret_key: str = "demo-troque-em-producao",
         db: object | None = None,
         db_secret_name: str | None = None,
+        bucket: object | None = None,
         **kwargs,
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
@@ -246,6 +247,15 @@ class ComputeStack(Stack):
                 '$(echo "$SEC"|jq -r .username):$(echo "$SEC"|jq -r .password)@'
                 '$(echo "$SEC"|jq -r .host):$(echo "$SEC"|jq -r .port)/'
                 '$(echo "$SEC"|jq -r .dbname)"\n'
+            )
+        if bucket is not None:
+            # Liga o S3 de verdade: injeta o NOME do bucket (token -> Fn::ImportValue
+            # no deploy; nunca precisamos saber o nome aqui). O userdata-api.sh lê
+            # estas vars com defaults (:=), então sem bucket ele cai em modo local.
+            api_head += (
+                "export STORAGE_MODE='s3'\n"
+                f"export AWS_REGION='{self.region}'\n"
+                f"export S3_BUCKET_NAME='{bucket.bucket_name}'\n"
             )
         api = make(
             "cloudtask-api", "t3.small", api_head + _body(_SERVERS / "userdata-api.sh")

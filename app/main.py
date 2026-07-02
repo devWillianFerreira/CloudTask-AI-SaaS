@@ -56,7 +56,7 @@ APP_DESCRIPTION = """\
 Mini **SaaS de gerenciamento de tarefas** construído ao longo da disciplina
 **Computação em Nuvem** (N-CPU / UNINTER).
 
-Esta é a versão da **Semana 6** (versão `0.6.0`) — **a final da disciplina**:
+Esta é a versão da (versão `0.6.0`) — **a final da disciplina**:
 sobre toda a base anterior (CRUD, `.env`, upload S3/local, Kubernetes local,
 deploy no **EKS**, **HPA**/custos e **eventos** em **DynamoDB**), fechamos com
 **infraestrutura como código** usando **AWS CDK** (stacks de S3, ECR e VPC em
@@ -67,10 +67,7 @@ checklist de deploy/custos) em `docs/entrega-final/`.
 > respectivamente, `task.created` / `task.updated` / `task.deleted` no event
 > store configurado (`EVENT_STORE_MODE` = `local` | `dynamodb`).
 
-### Status do projeto
 
-> A coluna **Semana atual** está marcada com `← você está aqui`. A versão
-> da API é incrementada para `0.N.0` no início de cada semana.
 
 | Semana | Branch                          | Tema                                                          |
 | -----: | :------------------------------ | :------------------------------------------------------------ |
@@ -79,7 +76,7 @@ checklist de deploy/custos) em `docs/entrega-final/`.
 |      3 | `semana-03-s3-kubernetes`       | Upload S3 (com fallback local), Kubernetes local (Kind)       |
 |      4 | `semana-04-eks-aws`             | Build/push para ECR, deploy no EKS (aula combinada com a Semana 3) |
 |      5 | `semana-05-custos-nosql-logs`   | HPA + teste de carga + Cost Explorer, eventos com DynamoDB    |
-| <kbd>6</kbd> ← *você está aqui* | `semana-06-cdk-final`           | AWS CDK (S3, ECR, VPC), docs finais e checklist LGPD          |
+|      6 | `semana-06-cdk-final`           | AWS CDK (S3, ECR, VPC), docs finais e checklist LGPD          |
 
 ### Tags
 
