@@ -132,7 +132,7 @@ case "${ACTION}" in
     fi
     echo "  Login do app/Grafana: admin / admin#123"
     echo "============================================================"
-    echo "✅ Stacks no ar. Ao terminar:  ./semana-06-cdk-deploy.sh destroy"
+    echo "✅ Stacks no ar. Ao terminar:  ./cdk-deploy.sh destroy  "
     ;;
   destroy)
     # Ordem INVERSA do deploy (dependentes primeiro): Database antes da Network

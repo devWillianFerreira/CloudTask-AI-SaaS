@@ -24,8 +24,8 @@ set -xe
 
 : "${ADMIN_PASSWORD:=admin#123}"
 : "${SECRET_KEY:=demo-troque-em-producao}"
-: "${REPO_URL:=https://github.com/N-CPUninter/Computa-o-em-Nuvem---Projeto-exemplo-CloudTask-AI-SaaS.git}"
-: "${BRANCH:=semana-06-cdk-final}"
+: "${REPO_URL:=https://github.com/devWillianFerreira/CloudTask-AI-SaaS}"
+: "${BRANCH:=main}"
 : "${DATABASE_URL:=}"
 : "${ROOT_PATH:=}"   # atrás do proxy: "/api" (Swagger gera URLs com o prefixo)
 # Storage dos uploads: o lançador escolhe. Sem export = modo local (disco do
