@@ -26,11 +26,11 @@ metadata:
   namespace: cloudtask
   labels: { app: api, component: backend }
 spec:
-  # Alvo: o Deployment da API no EKS (deployment-eks.yaml -> name: cloudtask-api).
+  # Alvo: o Deployment da API no EKS (deployment-eks.yaml -> name: api).
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: cloudtask-api
+    name: api
   # Faixa de escala. Começa em 2 (alta disponibilidade) e nunca passa de 5
   # (teto de custo para o Learner Lab).
   minReplicas: 2
@@ -49,6 +49,6 @@ spec:
   # derrubaria réplicas e elas subiriam de novo logo após (efeito "flapping").
   behavior:
     scaleDown:
-      stabilizationWindowSeconds: 120  # espera 2 min de calmaria antes de reduzir
+      stabilizationWindowSeconds: 120 # espera 2 min de calmaria antes de reduzir
     scaleUp:
-      stabilizationWindowSeconds: 0    # sobe imediatamente quando a carga chega
+      stabilizationWindowSeconds: 0 # sobe imediatamente quando a carga chega
