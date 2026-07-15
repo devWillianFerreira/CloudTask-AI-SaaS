@@ -26,3 +26,11 @@
   +
   <a href="https://aws.amazon.com/cdk/" title="AWS CDK">AWS CDK</a>
 </p>
+
+## O que foi feito nesta semana
+
+> 🎓 **Última semana da disciplina.** Esta branch parte do estado da Semana 5
+> (toda a base: CRUD, S3, Kind/EKS, HPA, DynamoDB) e fecha com **IaC** e a
+> **entrega final**. Versão da API: **`0.6.0`**.
+
+
