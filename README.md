@@ -3,7 +3,7 @@
 </div>
 <div align="center">
   <h1>CloudTask AI SaaS</h1>
-  <h2>Sobre o projeto</h2>
+  ### Sobre o projeto
   <p>O CloudTask AI SaaS é uma API REST desenvolvida em FastAPI para gerenciamento de tarefas.</p>
   <p>Durante a disciplina o projeto evoluiu desde uma aplicação local utilizando Docker até uma infraestrutura completa na AWS, incluindo Kubernetes, armazenamento em nuvem, banco de dados gerenciado, monitoramento e Infraestrutura como Código utilizando AWS CDK.</p>
 </div>
