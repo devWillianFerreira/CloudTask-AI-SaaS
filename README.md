@@ -86,6 +86,30 @@
 | **GET**  | **`/uploads/{filename}`** | **Baixar (200) ou redirect S3 (307)** |
 | GET    | `/docs`               | Swagger UI. |
 
+## Estrutura final do projeto 
+```text
+cloudtask-ai-saas/
+├── app/
+│   ├── main.py
+│   ├── core/            # config, security
+│   ├── api/             # routes_health, routes_tasks, routes_uploads, routes_events
+│   ├── db/              # database, models, schemas
+│   ├── services/        # s3_service, dynamodb_service, task_service
+│   └── utils/           # logging
+├── infra/
+│   ├── docker/
+│   ├── k8s/             # local + aws/
+│   └── cdk/             # stacks S3, ECR, VPC
+├── scripts/             # build-and-push-ecr.sh, load-test
+├── tests/
+├── docs/                # ROADMAP, HOW_TO_USE, arquitetura, LGPD, etc.
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+├── .env.example
+└── README.md
+```
+
 ## Infraestrutura como Código com AWS CDK
 
 ### 1. Clonar o projeto
@@ -136,29 +160,5 @@ Após concluir os testes, remova todos os recursos criados na AWS utilizando:
 ```
 > **Este comando remove as stacks provisionadas pelo AWS CDK, evitando custos desnecessários**
 
-## Estrutura final do projeto 
-```text
-cloudtask-ai-saas/
-├── app/
-│   ├── main.py
-│   ├── core/            # config, security
-│   ├── api/             # routes_health, routes_tasks, routes_uploads, routes_events
-│   ├── db/              # database, models, schemas
-│   ├── services/        # s3_service, dynamodb_service, task_service
-│   └── utils/           # logging
-├── infra/
-│   ├── docker/
-│   ├── k8s/             # local + aws/
-│   └── cdk/             # stacks S3, ECR, VPC
-├── scripts/             # build-and-push-ecr.sh, load-test
-├── tests/
-├── docs/                # ROADMAP, HOW_TO_USE, arquitetura, LGPD, etc.
-├── Dockerfile
-├── docker-compose.yml
-├── requirements.txt
-├── .env.example
-└── README.md
-```
-
-## Estrutura final do projeto 
+## Licença
 Projeto desenvolvido exclusivamente para fins acadêmicos.
