@@ -85,3 +85,9 @@
 | **POST** | **`/uploads`**          | **Enviar arquivo (multipart, 201)** |
 | **GET**  | **`/uploads/{filename}`** | **Baixar (200) ou redirect S3 (307)** |
 | GET    | `/docs`               | Swagger UI. |
+
+## Infraestrutura como Código com AWS CDK
+
+```text
+git clone https://github.com/SEU-USUARIO/cloudtask-ai-saas.git
+```
