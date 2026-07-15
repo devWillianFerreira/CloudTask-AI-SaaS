@@ -88,6 +88,8 @@
 
 ## Infraestrutura como Código com AWS CDK
 
+### 1. Clonar o projeto
+Clone o repositório do GitHub ou faça o download do projeto em formato .zip.
 ```text
 git clone https://github.com/SEU-USUARIO/cloudtask-ai-saas.git
 ```
