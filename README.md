@@ -92,4 +92,16 @@
 Clone o repositório do GitHub ou faça o download do projeto em formato .zip.
 ```text
 git clone https://github.com/SEU-USUARIO/cloudtask-ai-saas.git
+cd cloudtask-ai-saas
 ```
+### 2. Abrir o projeto no Dev Container
+Abra o projeto no Visual Studio Code e selecione a opção Reopen in Container para iniciar o ambiente de desenvolvimento configurado.
+
+### 3. Verificar a autenticação na AWS
+Confirme que o ambiente está autenticado na conta da AWS executando:
+```text
+aws sts get-caller-identity
+```
+| `O comando deverá retornar informações como Account, Arn e UserId, indicando que as credenciais estão configuradas corretamente.`
+
+
