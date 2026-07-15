@@ -27,10 +27,31 @@
   <a href="https://aws.amazon.com/cdk/" title="AWS CDK">AWS CDK</a>
 </p>
 
-## O que foi feito nesta semana
+## Arquitetura do Projeto
 
-> 🎓 **Última semana da disciplina.** Esta branch parte do estado da Semana 5
-> (toda a base: CRUD, S3, Kind/EKS, HPA, DynamoDB) e fecha com **IaC** e a
-> **entrega final**. Versão da API: **`0.6.0`**.
+```text
+                         Internet (HTTPS)
+                              │
+                       www.seu-dominio  ── Route 53 (DNS)
+                              │
+                         ┌────▼─────┐
+                         │   ALB    │ ◄── ACM (certificado TLS)
+                         └────┬─────┘
+                  TLS termina aqui; HTTP interno
+                              │
+              ┌───────────────▼────────────────┐
+              │        Amazon EKS (cluster)     │
+              │   ┌──────────┐   HPA 2..5       │
+              │   │ Pods API │ ◄── escala c/ CPU│
+              │   └────┬─────┘                  │
+              └────────┼───────────────────────┘
+                       │
+        ┌──────────────┼───────────────┬──────────────┐
+        ▼              ▼               ▼              ▼
+  RDS PostgreSQL   Amazon S3      DynamoDB        ECR (imagem)
+  (tarefas)        (uploads)      (eventos/logs)  (origem do deploy)
+
+  Infra descrita como código (CDK): S3, ECR, VPC  →  reprodutível e versionada.
+```
 
 
