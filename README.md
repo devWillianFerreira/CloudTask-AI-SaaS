@@ -32,24 +32,24 @@
 ```text
                          Internet (HTTPS)
                               │
-                       www.seu-dominio  ── Route 53 (DNS)
+                         <ip>.sslip.io
                               │
-                         ┌────▼─────┐
-                         │   ALB    │ ◄── ACM (certificado TLS)
-                         └────┬─────┘
-                  TLS termina aqui; HTTP interno
+                         ┌────▼─────────┐
+                         │ EDGE (Caddy) │ ◄── Elastic Ip + HTTPS/TLS
+                         └────┬─────────┘
                               │
-              ┌───────────────▼────────────────┐
-              │        Amazon EKS (cluster)     │
-              │   ┌──────────┐   HPA 2..5       │
-              │   │ Pods API │ ◄── escala c/ CPU│
-              │   └────┬─────┘                  │
-              └────────┼───────────────────────┘
-                       │
-        ┌──────────────┼───────────────┬──────────────┐
+              ┌───────────────────────────────┐
+            /api/*                        /grafana/*
+              │                               │
+         ┌────▼────────┐              ┌───────▼─────┐                     
+         │   API EC2   │              │ Grafana EC2 │ 
+         └────┬────────┘              └─────────────┘     
+              │
+              │
+        ┌─────┼────────┼───────────────┬──────────────┐
         ▼              ▼               ▼              ▼
   RDS PostgreSQL   Amazon S3      DynamoDB        ECR (imagem)
-  (tarefas)        (uploads)      (eventos/logs)  (origem do deploy)
+  (tarefas)        (uploads)      (eventos/logs)  (Repositório de Imagens)
 
   Infra descrita como código (CDK): S3, ECR, VPC  →  reprodutível e versionada.
 ```
