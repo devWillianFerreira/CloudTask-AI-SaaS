@@ -70,3 +70,18 @@
 - AWS CDK
 - Amazon CloudWatch
 
+## Endpoints
+
+| Método | Caminho               | Descrição |
+| ------ | --------------------- | --------- |
+| GET    | `/`                   | Metadados da aplicação. |
+| GET    | `/health`             | Liveness probe. |
+| GET    | `/health/ready`       | Readiness (checa o PostgreSQL). |
+| POST   | `/tasks`              | Criar tarefa (201). |
+| GET    | `/tasks`              | Listar (paginação `skip`/`limit`). |
+| GET    | `/tasks/{task_id}`    | Obter por id (404). |
+| PUT    | `/tasks/{task_id}`    | Atualizar parcial. |
+| DELETE | `/tasks/{task_id}`    | Remover (204). |
+| **POST** | **`/uploads`**          | **Enviar arquivo (multipart, 201)** |
+| **GET**  | **`/uploads/{filename}`** | **Baixar (200) ou redirect S3 (307)** |
+| GET    | `/docs`               | Swagger UI. |
