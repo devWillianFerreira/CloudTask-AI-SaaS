@@ -115,7 +115,7 @@ Execute o comando abaixo para confirmar que a biblioteca **aws-cdk-lib** está i
 python3 -c "import aws_cdk; print('aws-cdk-lib OK')"
 ```
 > **este comando apenas verifica a instalação da biblioteca e não cria nem modifica recursos na AWS.**
-> > **Se tudo estiver correto, será exibida a mensagem: aws-cdk-lib OK**
+> **Se tudo estiver correto, será exibida a mensagem: aws-cdk-lib OK**
 
 ### 6. Executar o deploy da infraestrutura
 Ainda na pasta infra/cdk, execute:
