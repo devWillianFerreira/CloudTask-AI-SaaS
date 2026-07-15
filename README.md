@@ -34,9 +34,9 @@
                               │
                          <ip>.sslip.io
                               │
-                         ┌────▼─────────┐
-                         │ EDGE (Caddy) │ ◄── Elastic Ip + HTTPS/TLS
-                         └────┬─────────┘
+                      ┌───────▼──────────┐
+                      │ EDGE EC2 (Caddy) │ ◄── Elastic Ip + HTTPS/TLS
+                      └───────┬──────────┘
                               │
               ┌───────────────────────────────┐
             /api/*                        /grafana/*
