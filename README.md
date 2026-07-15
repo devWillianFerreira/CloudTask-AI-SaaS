@@ -3,7 +3,7 @@
 </div>
 <div align="center">
   <h1>CloudTask AI SaaS</h1>
-  ### Sobre o projeto
+  ### Aula 11 — Infraestrutura como Código (AWS CDK)
   <p>O CloudTask AI SaaS é uma API REST desenvolvida em FastAPI para gerenciamento de tarefas.</p>
   <p>Durante a disciplina o projeto evoluiu desde uma aplicação local utilizando Docker até uma infraestrutura completa na AWS, incluindo Kubernetes, armazenamento em nuvem, banco de dados gerenciado, monitoramento e Infraestrutura como Código utilizando AWS CDK.</p>
 </div>
