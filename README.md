@@ -95,7 +95,7 @@ git clone https://github.com/SEU-USUARIO/cloudtask-ai-saas.git
 cd cloudtask-ai-saas
 ```
 ### 2. Abrir o projeto no Dev Container
-Abra o projeto no Visual Studio Code e selecione a opção Reopen in Container para iniciar o ambiente de desenvolvimento configurado.
+Abra o projeto no Visual Studio Code e selecione a opção **Reopen in Container** para iniciar o ambiente de desenvolvimento configurado.
 
 ### 3. Verificar a autenticação na AWS
 Confirme que o ambiente está autenticado na conta da AWS executando:
@@ -104,4 +104,27 @@ aws sts get-caller-identity
 ```
 > **O comando deverá retornar informações como Account, Arn e UserId, indicando que as credenciais estão configuradas corretamente.**
 
+### 4. Acessar a pasta do AWS CDK
+```text
+cd infra/cdk
+```
 
+### 3. Verificar se o AWS CDK está instalado
+Execute o comando abaixo para confirmar que a biblioteca **aws-cdk-lib** está instalada e disponível no ambiente Python.
+```text
+python3 -c "import aws_cdk; print('aws-cdk-lib OK')"
+```
+> **este comando apenas verifica a instalação da biblioteca e não cria nem modifica recursos na AWS.**
+> > **Se tudo estiver correto, será exibida a mensagem: aws-cdk-lib OK**
+
+### 6. Executar o deploy da infraestrutura
+Ainda na pasta infra/cdk, execute:
+```text
+./cdk-deploy.sh deploy
+```
+#### O script realiza automaticamente as seguintes etapas
+
+  - verifica as dependências do projeto; 
+  - executa o cdk synth; 
+  - cria ou atualiza as stacks da infraestrutura na AWS;
+  - exibe os endereços da API (Swagger) e do Grafana ao final do deploy. 
