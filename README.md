@@ -54,4 +54,19 @@
   Infra descrita como código (CDK): S3, ECR, VPC  →  reprodutível e versionada.
 ```
 
+## Tecnologias utilizadas
+- Python
+- FastAPI
+SQLAlchemy
+PostgreSQL
+Docker
+Amazon ECR
+Amazon EKS
+Kubernetes
+Amazon S3
+Amazon RDS
+Amazon DynamoDB
+Grafana
+AWS CDK
+Amazon CloudWatch
 
