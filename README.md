@@ -102,6 +102,6 @@ Confirme que o ambiente está autenticado na conta da AWS executando:
 ```text
 aws sts get-caller-identity
 ```
-| `O comando deverá retornar informações como Account, Arn e UserId, indicando que as credenciais estão configuradas corretamente.`
+> ⚠️ **Ao mudar de semana (branch), faça REBUILD do devcontainer.**
 
 
