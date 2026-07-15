@@ -127,4 +127,11 @@ Ainda na pasta infra/cdk, execute:
   - verifica as dependências do projeto; 
   - executa o cdk synth; 
   - cria ou atualiza as stacks da infraestrutura na AWS;
-  - exibe os endereços da API (Swagger) e do Grafana ao final do deploy. 
+  - exibe os endereços da API (Swagger) e do Grafana ao final do deploy.
+
+### 7. Remover a infraestrutura 
+Após concluir os testes, remova todos os recursos criados na AWS utilizando:
+```text
+./cdk-deploy.sh destroy
+```
+> **Este comando remove as stacks provisionadas pelo AWS CDK, evitando custos desnecessários**
