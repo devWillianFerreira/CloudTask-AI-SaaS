@@ -276,40 +276,6 @@ cloudtask-ai-saas/
 └── README.md
 ```
 
-> Em branches anteriores à aula 12, só existem as pastas e arquivos correspondentes ao conteúdo já visto.
-
-## Contribuições
-
-Se você tiver alguma sugestão, correção de bugs ou melhorias para este projeto didático, sinta-se à vontade para abrir uma issue ou enviar uma pull request. Sua contribuição é muito bem-vinda!
-
-Entrega final: preencha [`docs/entrega-final/final-report-template.md`](docs/entrega-final/final-report-template.md)
-e rode os checklists de [LGPD](docs/entrega-final/lgpd-checklist.md) e
-[deploy/custos](docs/entrega-final/deployment-checklist.md).
-
-## Fim da disciplina 🎓
-
-Esta é a **última semana**. A consolidação está em
-[`docs/entrega-final/final-architecture.md`](docs/entrega-final/final-architecture.md)
-(as 6 semanas em um diagrama) e no [`docs/ROADMAP.md`](docs/ROADMAP.md).
-
-## Referências
-
-- Issues da semana: [#11 — Aula 11 (CDK)](https://github.com/N-CPUninter/Computa-o-em-Nuvem---Projeto-exemplo-CloudTask-AI-SaaS/issues/11) · [#12 — Aula 12 (final)](https://github.com/N-CPUninter/Computa-o-em-Nuvem---Projeto-exemplo-CloudTask-AI-SaaS/issues/12)
-- **CDK / IaC (Aula 11)**: [`docs/praticas/18-cdk-iac.md`](docs/praticas/18-cdk-iac.md) + stacks em `infra/cdk/`
-- **Entrega final (Aula 12)**: [`docs/entrega-final/`](docs/entrega-final/README.md)
-- 📜 **Scripts (mapa por semana)**: [`scripts/README.md`](scripts/README.md)
-- Lista de tarefas: [`docs/TAREFAS.md`](docs/TAREFAS.md)
-- Setup do zero: [`docs/praticas/00-setup-inicial-e-aws-academy.md`](docs/praticas/00-setup-inicial-e-aws-academy.md)
-- **ECR**: [`docs/praticas/11-ecr-push.md`](docs/praticas/11-ecr-push.md) + `scripts/semana-04-ecr/build-push-ecr.sh` + `buildspec.yml`
-- **EKS**: [`docs/praticas/12-eks-deploy.md`](docs/praticas/12-eks-deploy.md) + manifests em `infra/k8s/aws/`
-- **Kubernetes Kind (Aula 6)**: [`docs/praticas/10-kubernetes-kind-local.md`](docs/praticas/10-kubernetes-kind-local.md) + manifests em `infra/k8s/`
-- **S3 (Aula 5)**: [`docs/conceitos/s3-efs-datalake.md`](docs/conceitos/s3-efs-datalake.md)
-- **Roteiro Aula 3+4 (semanas combinadas)**: [`docs/praticas/13-roteiro-aula-semanas-3-e-4.md`](docs/praticas/13-roteiro-aula-semanas-3-e-4.md)
-- **Stack AWS por semana** (custos, Postgres container × RDS, ECS × EKS): [`docs/conceitos/infra-aws-minima-por-semana.md`](docs/conceitos/infra-aws-minima-por-semana.md)
-- **Deploy manual AWS** (ECR, Fargate, EKS, RDS, Secrets Manager, CodeBuild): [`docs/praticas/09-deploy-manual-aws.md`](docs/praticas/09-deploy-manual-aws.md)
-- Segurança: [`docs/conceitos/security-model.md`](docs/conceitos/security-model.md) · [`docs/conceitos/aws-networking.md`](docs/conceitos/aws-networking.md) · [`docs/conceitos/https-tls.md`](docs/conceitos/https-tls.md)
-- Docker: [`docs/conceitos/docker-explained.md`](docs/conceitos/docker-explained.md)
-
 ## Licença
 
 [GNU General Public License v3.0](LICENSE).
