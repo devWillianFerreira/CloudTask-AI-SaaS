@@ -57,16 +57,16 @@
 ## Tecnologias utilizadas
 - Python
 - FastAPI
-SQLAlchemy
-PostgreSQL
-Docker
-Amazon ECR
-Amazon EKS
-Kubernetes
-Amazon S3
-Amazon RDS
-Amazon DynamoDB
-Grafana
-AWS CDK
-Amazon CloudWatch
+- SQLAlchemy
+- PostgreSQL
+- Docker
+- Amazon ECR
+- Amazon EKS
+- Kubernetes
+- Amazon S3
+- Amazon RDS
+- Amazon DynamoDB
+- Grafana
+- AWS CDK
+- Amazon CloudWatch
 
